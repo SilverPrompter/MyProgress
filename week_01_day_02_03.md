@@ -1,0 +1,96 @@
+# Daily Log — June 4, 2026
+
+## LeetCode
+
+**Problem:** Check if Array is Sorted and Rotated  
+**Difficulty:** Easy  
+**Pattern:** Rotation point detection
+
+### Approach
+A rotated sorted array has exactly one point where the value drops. Count the drops and check the wrap — if the last element is less than or equal to the first, the tail wraps cleanly back to the head.
+
+**Two conditions for a valid rotation:**
+1. Exactly one drop in the array
+2. Last element ≤ first element (valid wrap)
+3. Zero drops also valid — array was never rotated
+
+### Solution
+```python
+def check(self, nums: List[int]) -> bool:
+    wrap = False
+    count = 0
+    for x in range(len(nums) - 1):
+        if nums[x] > nums[x+1]:
+            count += 1
+    if nums[-1] <= nums[0]:
+        wrap = True
+    if count == 0:
+        return True
+    elif count == 1 and wrap == True:
+        return True
+    else:
+        return False
+```
+
+### Efficiency
+- Time: **O(n)** — one pass through the array
+- Space: **O(1)** — two variables, no extra storage
+
+### Key lesson
+Reading code out loud caught a subtle bug — `>=` vs `<=` in the wrap condition. If it sounds wrong when you say it, it probably is. Trust that instinct.
+
+---
+
+## AWS Glue — Amazon ML Associate Course
+
+**Topic:** ETL pipelines, crawlers, and data catalogs
+
+AWS Glue is a managed ETL (Extract, Transform, Load) service. The core pieces:
+
+- **Crawlers** — automatically scan data sources and infer the schema
+- **Data Catalog** — a central metadata store that tracks what your data looks like and where it lives
+- **ETL Jobs** — the actual transformation pipelines that move and reshape data
+
+**Mental model:** think of Glue as a pipeline factory. Crawlers are scouts that map the terrain, the Data Catalog is the map they produce, and ETL jobs are the trucks moving cargo along routes the map defines.
+
+---
+
+## Designing Data-Intensive Applications — Chapter 2
+
+**Author:** Martin Kleppmann  
+**Topic:** Data models and query languages
+
+Chapter 2 covers how we model data — the choices between relational models, document models, and graph models, and the tradeoffs each makes.
+
+**Key idea:** the data model you choose shapes everything downstream — how you query, how you scale, how you think about relationships between things.
+
+**Starting to click:** the connection between data modeling decisions and real engineering tradeoffs. Not just "which is better" but "which fits this problem."
+
+---
+
+## Attention Is All You Need — Transformer Paper
+
+**Topic:** Vectors, embeddings, and weighted averages
+
+**Vectors and embeddings:** words aren't fed into a transformer as raw text. They're converted into vectors — lists of numbers that represent meaning in a high-dimensional space. Similar words end up close together in that space.
+
+**Weighted averages:** attention works by computing a weighted average over all the vectors in a sequence. The weights determine how much each word "pays attention" to every other word. High weight = strong relationship, low weight = weak relationship.
+
+**Plain English:** instead of reading one word at a time, the model looks at every word simultaneously and asks "how relevant is each other word to understanding this one?" The answer becomes a weighted blend of all the other word vectors.
+
+This connects directly to the Query/Key/Value mechanics studied in the GPT-2 internals sessions.
+
+---
+
+## Patterns and Connections Today
+
+- AWS Glue ETL → same data transformation thinking as LeetCode problems — input goes in, something meaningful comes out
+- Kleppmann data models → connects to the KV store work coming in Phase 0
+- Transformer embeddings → reinforces GPT-2 internals work on token embeddings and attention
+
+---
+
+## Repo Updates Needed
+- [ ] Add this log to `/logs` folder
+- [ ] Update README weekly log row for Week 3
+- [ ] Add Kleppmann to resources section of README
