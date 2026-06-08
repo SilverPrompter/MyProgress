@@ -69,8 +69,8 @@
 
 ## Daily LeetCode Log
 
-| # | Problem | Pattern | Difficulty |
-|---|---------|---------|------------|
+| Day | Problem | Pattern | Difficulty |
+|-----|---------|---------|------------|
 | 01 | Robot Return to Origin | Running counter balance | Easy |
 | 02 | Check if Strings Can Be Made Equal | Group and compare | Easy |
 | 03 | Matrix Cyclic Shift | Cyclic transformation | Medium |
@@ -79,6 +79,7 @@
 | 06 | Biggest Rhombus Sums | Simulation + deduplication | Medium |
 | 07 | Find Missing Binary String | Cantor's diagonal argument | Medium |
 | 08 | Check if Array is Sorted and Rotated | Rotation point detection | Easy |
+| 09 | Partition Array According to Given Pivot | Three-way partition | Medium |
 
 ---
 
@@ -92,6 +93,7 @@
 - **Simulation + deduplication** — simulate every case, set handles duplicates
 - **Cantor's diagonal argument** — construct a value guaranteed to differ from every item
 - **Rotation point detection** — count drops, check the wrap
+- **Three-way partition** — split into less, equal, greater buckets preserving order
 
 ---
 
@@ -110,17 +112,14 @@
 
 ---
 
-## Weekly Log
+## Daily Log
 
-| Week | What I Covered |
-|------|---------------|
-| Week 1 | CS50P, first LeetCode problems, AWS Glue ETL, Kleppmann Ch.2, transformer paper — vectors and embeddings |
-
----
-
-## Blog
-
-- [01 — From Breaking Systems to Building Them](blog/01_from_security_to_ml.md)
+| Day | Topics Covered |
+|-----|---------------|
+| 01 | CS50P, first LeetCode problems |
+| 02 | GPT-2 internals, transformer components |
+| 03 | AWS Glue ETL, Kleppmann Ch.2, transformer paper — vectors and embeddings |
+| 04 | Kleppmann Ch.2 continued, three-way partition LeetCode |
 
 ---
 
