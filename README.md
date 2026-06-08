@@ -40,13 +40,21 @@
 | Designing Machine Learning Systems | — | 🟡 In progress |
 | Designing Data-Intensive Applications | Martin Kleppmann | 🟡 In progress |
 
-**Research Papers**
-- Attention Is All You Need — Vaswani et al.
-- Anthropic alignment and interpretability papers (Phase 4)
-
 **Practice**
 - Daily LeetCode — learning-first workflow, one problem per day
 - GPT-2 internals — full transformer stack from scratch in code
+
+---
+
+## Research Papers
+
+| # | Paper | Authors | Read | Coded |
+|---|-------|---------|------|-------|
+| 1 | DataPerf: Benchmarks for Data-Centric AI | Mazumder et al. | ✅ | ⬜ |
+| 2 | GPT-3: Language Models are Few-Shot Learners | Brown et al. | ✅ | ⬜ |
+| 3 | Attention Is All You Need | Vaswani et al. | 🟡 | ⬜ |
+| 4 | AdderNet: Do We Really Need Multiplications? | Chen et al. | ✅ | ⬜ |
+| 5 | Small Language Models are the Future of Agentic AI | Belcak et al. | ✅ | ⬜ |
 
 ---
 
