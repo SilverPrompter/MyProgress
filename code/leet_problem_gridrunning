@@ -1,0 +1,21 @@
+def getBiggestThree(self, grid: List[List[int]]) -> List[int]:
+        m = len(grid)
+        n = len(grid[0])
+        sums = set()
+        
+        for r in range(m):
+            for c in range(n):
+                for k in range(0, min(r, m-1-r, c, n-1-c) + 1):
+                    if k == 0:
+                        sums.add(grid[r][c])
+                    else:
+                        total = 0
+                        for i in range(k):
+                            total += grid[r-k+i][c-i]    # top → left
+                            total += grid[r+i][c-k+i]    # left → bottom
+                            total += grid[r+k-i][c+i]    # bottom → right
+                            total += grid[r-i][c+k-i]    # right → top
+                        #total -= grid[r-k][c] + grid[r][c-k] + grid[r+k][c] + grid[r][c+k]
+                        sums.add(total)
+        
+        return sorted(sums, reverse=True)[:3]
