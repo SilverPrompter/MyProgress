@@ -28,17 +28,34 @@
 
 **Video**
 - 3Blue1Brown — Neural networks, linear algebra, calculus series
-- Computerphile — CS concepts (hash tables, algorithms)
+- Computerphile — CS concepts
 
 **Books**
-- *Designing Data-Intensive Applications* — Martin Kleppmann (Phase 3)
+| Title | Author | Status |
+|-------|--------|--------|
+| Build a Large Language Model From Scratch | Sebastian Raschka | 🟡 In progress |
+| LLM Engineer's Handbook | — | 🟡 In progress |
+| 50 Algorithms Every Programmer Should Know | — | 🟡 In progress |
+| Prompt Engineering for Generative AI | — | 🟡 In progress |
+| Designing Machine Learning Systems | — | 🟡 In progress |
+| Designing Data-Intensive Applications | Martin Kleppmann | 🟡 In progress |
+
+**Research Papers**
+- Attention Is All You Need — Vaswani et al.
+- Anthropic alignment and interpretability papers (Phase 4)
 
 **Practice**
 - Daily LeetCode — learning-first workflow, one problem per day
 - GPT-2 internals — full transformer stack from scratch in code
 
-**Research Papers**
-- Anthropic alignment and interpretability papers (Phase 4)
+---
+
+## Certifications
+
+| Certificate | Provider | Status |
+|-------------|----------|--------|
+| AWS Certified Machine Learning — Associate | Amazon | 🟡 In progress |
+| AWS Certified Machine Learning — Specialty | Amazon | ⬜ Planned (~1 year) |
 
 ---
 
@@ -53,6 +70,7 @@
 | 05 | Flip Submatrix | Two pointer reversal | Medium |
 | 06 | Biggest Rhombus Sums | Simulation + deduplication | Medium |
 | 07 | Find Missing Binary String | Cantor's diagonal argument | Medium |
+| 08 | Check if Array is Sorted and Rotated | Rotation point detection | Easy |
 
 ---
 
@@ -65,6 +83,7 @@
 - **Two pointer reversal** — one pointer each end, moving inward
 - **Simulation + deduplication** — simulate every case, set handles duplicates
 - **Cantor's diagonal argument** — construct a value guaranteed to differ from every item
+- **Rotation point detection** — count drops, check the wrap
 
 ---
 
@@ -87,9 +106,7 @@
 
 | Week | What I Covered |
 |------|---------------|
-| Week 1 | CS50P Week 0-1, rock-paper-scissors, first LeetCode problems |
-| Week 2 | GPT-2 internals, transformer components, LeetCode patterns |
-| Week 3 | Medium LeetCode problems, Cantor's diagonal, repo setup |
+| Week 1 | CS50P, first LeetCode problems, AWS Glue ETL, Kleppmann Ch.2, transformer paper — vectors and embeddings |
 
 ---
 
