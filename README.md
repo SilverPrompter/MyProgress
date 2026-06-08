@@ -97,7 +97,7 @@
 
 ---
 
-## GPT-2 Internals Progress
+## ML Systems & Internals Progress
 
 - [x] Token and positional embeddings
 - [x] Layer normalization
