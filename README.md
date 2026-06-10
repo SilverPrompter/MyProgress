@@ -33,6 +33,7 @@
 **Books**
 | Title | Author | Status |
 |-------|--------|--------|
+| AI Engineering | Chip Huyen | ✅ Finished |
 | Build a Large Language Model From Scratch | Sebastian Raschka | 🟡 In progress |
 | LLM Engineer's Handbook | — | 🟡 In progress |
 | 50 Algorithms Every Programmer Should Know | — | 🟡 In progress |
@@ -112,14 +113,15 @@
 
 ---
 
-## Daily Log
+## Recent Activity
 
-| Day | Topics Covered |
-|-----|---------------|
-| 01 | CS50P, first LeetCode problems |
-| 02 | GPT-2 internals, transformer components |
-| 03 | AWS Glue ETL, Kleppmann Ch.2, transformer paper — vectors and embeddings |
-| 04 | Kleppmann Ch.2 continued, three-way partition LeetCode |
+*Newest first — full session details in the [/logs](logs) folder.*
+
+- **Day 05** — CS50P exceptions, dict/tuple/set practice, finished *AI Engineering* (Chip Huyen), hard LeetCode explored at intuition level
+- **Day 04** — Kleppmann Ch.2 continued, three-way partition LeetCode
+- **Day 03** — AWS Glue ETL, Kleppmann Ch.2, transformer paper — vectors and embeddings
+- **Day 02** — GPT-2 internals, transformer components
+- **Day 01** — CS50P, first LeetCode problems
 
 ---
 
