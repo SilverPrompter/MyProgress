@@ -1,0 +1,95 @@
+# Day 06
+
+## CS50P — Exceptions
+
+Watched the CS50P lecture on exceptions — how Python deals with errors at runtime instead of crashing.
+
+- **try/except** — run risky code inside `try`, and if it fails, `except` catches the error instead of the whole program dying
+- **ValueError, NameError** — different error types signal different problems; you can catch them specifically
+- **else and finally** — `else` runs only if no exception happened; `finally` runs no matter what (success or failure)
+- **raise** — deliberately throw an exception yourself when something invalid happens
+
+**Mental model:** exceptions are guardrails. Instead of the program flying off the road when it hits bad input, `try/except` catches it and lets you decide what to do next.
+
+---
+
+## Heaps — High-Level Concept
+
+Covered what a heap is, concept-only (no implementation yet — saving the full problem for later).
+
+A heap is a container with one special power: no matter how many items you throw into it, it can always hand you the **biggest one instantly**. Throw in 50 numbers in random order, ask for the largest, and it's there immediately. Ask again, you get the next largest.
+
+**Mental model:** a pile of resumes that automatically keeps the strongest candidate on top. You don't re-sort the whole pile every time — the structure maintains the "best on top" property for you.
+
+This is the tool that makes certain LeetCode problems efficient: when you repeatedly need "the current max (or min)" out of a changing collection, a heap gives it to you fast instead of re-scanning everything each time.
+
+---
+
+## Attention Mechanism — Built From Scratch
+
+Implemented **scaled dot-product attention** in pure numpy, every line written by hand. This is the core operation from *Attention Is All You Need* (Vaswani et al., 2017) — the engine behind every modern transformer.
+
+### What it does
+Takes a sentence (a list of word-vectors) and rebuilds each word so it carries information about the words around it. Same shape goes in and comes out, but the output words are context-aware.
+
+### The pipeline I built
+| Step | What it does |
+|------|-------------|
+| `X` | The sentence — 3 words, 4 numbers each, shape (3, 4) |
+| `Q, K, V` | Three transformed versions of X via learned weight matrices |
+| `scores = Q @ K.T` | How much each word relates to every other word — shape (3, 3) |
+| `scores / sqrt(d_k)` | Scaling, so the numbers don't blow up |
+| `softmax(scores)` | Turns raw scores into weights that each sum to 1 |
+| `weights @ V` | Blends the value vectors by those weights → context-aware output |
+
+### The code
+```python
+import numpy as np
+
+def softmax(x):
+    e = np.exp(x - x.max(axis=-1, keepdims=True))
+    return e / e.sum(axis=-1, keepdims=True)
+
+def attention(Q, K, V):
+    scores = Q @ K.T
+    scores = scores / np.sqrt(4)
+    weights = softmax(scores)
+    output = weights @ V
+    return output
+
+X = np.array([
+    [1.0, 0.0, 0.0, 0.0],
+    [0.0, 1.0, 0.5, 0.0],
+    [0.0, 0.5, 1.0, 0.0],
+])
+
+W_Q = np.random.randn(4, 4)
+W_K = np.random.randn(4, 4)
+W_V = np.random.randn(4, 4)
+
+Q = X @ W_Q
+K = X @ W_K
+V = X @ W_V
+
+result = attention(Q, K, V)
+print(result)
+```
+
+### Key lesson
+The dot product is doing the same job here it did in the AdderNet/convolution work — **measuring similarity between two vectors**. Attention just uses that similarity score to decide how much each word should pay attention to every other word. Same primitive, new application.
+
+This is **Session 1 of 7** in a from-scratch transformer build. Next session: multi-head attention.
+
+---
+
+## Patterns and Connections Today
+- Exceptions (CS50P) → guardrails for runtime failure, same defensive instinct as input validation
+- Heaps → efficient "give me the best one right now" structure for changing collections
+- Attention → the dot-product-as-similarity idea carries straight over from earlier convolution/AdderNet work
+
+---
+
+## Repo Updates Needed
+- [ ] Add this log to `/logs` folder as `day_06.md`
+- [ ] Update README Recent Activity (newest on top)
+- [ ] Consider adding `01_attention.py` to repo (Session 1 of transformer build)
