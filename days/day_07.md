@@ -97,7 +97,7 @@ This is the same mechanism running inside every GPT and Claude model — just wi
 ---
 
 ## Note
-- LeetCode is tracked in a separate chat/log.
+- Leet Coding was done today by me and I did a problem where I was rotating a matrix 90 degree s and checking if it could match a target matrix. I learned to transpose with zip(*grid) then reverse [::-1] to achive the result of rotating the grid 90 degrees it also was a little lesson in chaning functions as zip(*grid) was returning it as a tuple so i had to convert it back into a list 
 
 ---
 
