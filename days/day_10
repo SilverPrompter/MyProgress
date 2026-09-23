@@ -1,0 +1,56 @@
+# Day 10
+
+## LeetCode — Path Existence Queries in a Graph
+
+**Difficulty:** Medium  
+**Pattern:** Connected components via labeling
+
+### The problem in plain English
+Nodes hold values from a sorted array. Two nodes are connected if their values differ by at most `maxDiff`. For each query `[u, v]`, answer: can you hop from node `u` to node `v`?
+
+### The key insight
+Because the array is **sorted**, side-by-side values are the closest pairs. If two neighbors are more than `maxDiff` apart, that gap is a **wall** — nothing on the left can ever reach anything on the right.
+
+So the array splits into **islands**. Walk left to right handing out group stickers:
+- Gap small enough to step across → same sticker as the previous node
+- Gap too big → wall → next sticker number
+
+```
+node:   0  1  2  3  4
+value:  1  2  5  9  10     (maxDiff = 2)
+group:  0  0  1  2  2
+```
+
+A query is `True` only when both nodes share a sticker.
+
+**Data transformation:** sorted values → group labels. A graph-path problem became a simple lookup.
+
+### Solution
+```python
+def pathExistenceQueries(self, n: int, nums: List[int], maxDiff: int, queries: List[List[int]]) -> List[bool]:
+    group = [0]
+    for x in range(1, n):
+        if nums[x] - nums[x-1] <= maxDiff:
+            group.append(group[x-1])
+        else:
+            group.append(group[x-1] + 1)
+
+    answer = []
+    for u, v in queries:
+        answer.append(group[u] == group[v])
+    return answer
+```
+
+### Efficiency
+- Time: **O(n + q)** — one pass over nodes, one pass over queries
+- Space: **O(n)** — one sticker per node, plus the required answer list
+
+### What I learned
+- **Index vs value** — the biggest stumbling block today. `group[x+1]` looks up a *position*; `group[x-1] + 1` takes a *sticker number* and adds one. The `+1` goes outside the brackets.
+- **`range(start, stop)`** never includes the stop. To visit nodes `1` through `n-1`, use `range(1, n)`. Hardcoded numbers break on other inputs — use the variable.
+- **Unpacking pairs directly** — `for u, v in queries:` pulls both numbers out of each pair, no `enumerate` needed.
+- **Query-time work stays tiny** — once the walls are baked into the labels, answering a query never needs `maxDiff` again.
+- **Memory tradeoff** — storing only wall positions would save space, but every lookup would need a search. The full label list trades a little memory for instant lookups.
+- For unsorted graphs the general tool is **Union-Find**; sorting let us skip it.
+
+---
