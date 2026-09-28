@@ -8,7 +8,7 @@
 
 | Phase | Focus | Progress |
 |-------|-------|----------|
-| Foundations | Python + CS vocabulary | 🟡 `████░░░░░░` 40% |
+| Foundations | Python + CS vocabulary | 🟡 `██████░░░░` 65% |
 | 0 | Python stdlib + KV diagnostic | ⬜ `░░░░░░░░░░` 0% |
 | 1 | System building drills | ⬜ `░░░░░░░░░░` 0% |
 | 2 | Public eval harness + blog | ⬜ `░░░░░░░░░░` 0% |
@@ -16,7 +16,7 @@
 | 4 | AI safety + STAR method | ⬜ `░░░░░░░░░░` 0% |
 | 5 | Mock interviews + apply | ⬜ `░░░░░░░░░░` 0% |
 
-**Parallel track:** GPT-2 internals study throughout all phases.
+**Parallel track:** ML systems and internals study throughout all phases.
 
 ---
 
@@ -43,7 +43,7 @@
 
 **Practice**
 - Daily LeetCode — learning-first workflow, one problem per day
-- GPT-2 internals — full transformer stack from scratch in code
+- Papers implemented from scratch — full architectures in NumPy, every line written by hand
 
 ---
 
@@ -53,9 +53,27 @@
 |---|-------|---------|------|-------|
 | 1 | DataPerf: Benchmarks for Data-Centric AI | Mazumder et al. | ✅ | ⬜ |
 | 2 | GPT-3: Language Models are Few-Shot Learners | Brown et al. | ✅ | ⬜ |
-| 3 | Attention Is All You Need | Vaswani et al. | 🟡 | ⬜ |
+| 3 | Attention Is All You Need | Vaswani et al. | ✅ | ✅ |
 | 4 | AdderNet: Do We Really Need Multiplications? | Chen et al. | ✅ | ⬜ |
 | 5 | Small Language Models are the Future of Agentic AI | Belcak et al. | ✅ | ⬜ |
+
+---
+
+## Transformer From Scratch ✅
+
+*Attention Is All You Need (Vaswani et al., 2017) — implemented end to end in pure NumPy. Both halves of the architecture plus a working training loop.*
+
+| Session | File | Built |
+|---------|------|-------|
+| 1 | [`01_attention.py`](transformer/01_attention.py) | Scaled dot-product attention — Q/K/V, scores, softmax, weighted blend |
+| 2 | [`02_multihead_attention.py`](transformer/02_multihead_attention.py) | Parallel heads, concatenation, output projection |
+| 3 | [`03_positional_encoding.py`](transformer/03_positional_encoding.py) | Sin/cos position fingerprints |
+| 4 | [`04_encoder_block.py`](transformer/04_encoder_block.py) | Attention + FFN + residual connections + layer norm |
+| 5 | [`05_transformer_encoder.py`](transformer/05_transformer_encoder.py) | Stacked blocks with independent per-block weights |
+| 6 | [`06_decoder.py`](transformer/06_decoder.py) | Masked self-attention + cross-attention + FFN |
+| 7 | [`07_loss.py`](transformer/07_loss.py) · [`07_train_tiny.py`](transformer/07_train_tiny.py) | Cross-entropy loss, gradients, a model that learns |
+
+**Results:** the tiny model trains from loss 1.45 → 0.001 and solves its task 4/4. Proved attention is order-blind (shuffled sentences gave byte-identical output), then proved positional encoding fixes it. Proved causal masking zeroes the upper triangle while rows still sum to 1.
 
 ---
 
@@ -81,6 +99,13 @@
 | 07 | Find Missing Binary String | Cantor's diagonal argument | Medium |
 | 08 | Check if Array is Sorted and Rotated | Rotation point detection | Easy |
 | 09 | Partition Array According to Given Pivot | Three-way partition | Medium |
+| 10 | Matrix Rotation | Transpose + row reversal | Medium |
+| 11 | Largest Submatrix with Rearrangements | Histogram heights + greedy sort | Medium |
+| 12 | Number Complement | Bitmask XOR | Easy |
+| 13 | Path Existence Queries in a Graph | Connected components via labeling | Medium |
+| 14 | Destroying Asteroids | Greedy with sorting | Medium |
+
+**Parked:** Maximum Total Value of K Distinct Subarrays (Hard) — explored at the intuition level, best-first search with a heap. Returning to it once heap mechanics are solid.
 
 ---
 
@@ -95,11 +120,19 @@
 - **Cantor's diagonal argument** — construct a value guaranteed to differ from every item
 - **Rotation point detection** — count drops, check the wrap
 - **Three-way partition** — split into less, equal, greater buckets preserving order
+- **Transpose + reverse** — rotate a matrix with `zip(*mat)` then reverse each row
+- **Histogram heights + greedy sort** — build per-cell heights, sort descending per row, maximize `height × width`
+- **Bitmask XOR** — flip all bits within a width by XOR against an all-ones mask
+- **Connected components via labeling** — label reachable groups, then answer queries by comparing labels
+- **Greedy with sorting** — sort ascending and consume in order, because each success expands what's reachable next
+
+**Verification technique:** when a greedy strategy is *claimed* optimal, brute-force the full search space on tiny inputs. 3000 random trials vs. all orderings → 0 mismatches. Turns "I think this works" into evidence. This is differential testing.
 
 ---
 
 ## ML Systems & Internals Progress
 
+**Transformer architecture**
 - [x] Token and positional embeddings
 - [x] Layer normalization
 - [x] GELU activation
@@ -108,8 +141,15 @@
 - [x] Residual connections
 - [x] Output head and text generation loop
 - [x] Parameter counting
-- [ ] Training loop and backpropagation
-- [ ] Loss functions and cross entropy
+- [x] Causal masking and cross-attention
+- [x] Loss functions and cross entropy
+- [x] Training loop — forward, loss, gradient, update
+- [ ] Backpropagation — gradients built numerically so far; real backprop still to come
+
+**Deep learning foundations**
+- [x] McCulloch–Pitts neuron (1943) and Rosenblatt's perceptron (1958)
+- [x] Activation functions and why nonlinearity is required
+- [x] CNN pipeline — convolution, max pooling, flatten, dropout, softmax
 
 ---
 
@@ -117,11 +157,26 @@
 
 *Newest first — full session details in the [/logs](logs) folder.*
 
+- **Day 13** — index-expression drill (5/6, the recurring bug is closing out), Destroying Asteroids via greedy-with-sorting, **completed *Attention Is All You Need* from scratch** — decoder with masked + cross-attention, cross-entropy loss, and a training run that actually learns (7/7 sessions)
+- **Day 12** — deep learning foundations: McCulloch–Pitts neuron (1943), Rosenblatt's perceptron (1958), activation functions, full CNN pipeline; spaced-retrieval re-attempt of Check if Array Is Sorted and Rotated (pattern not retained — logged honestly)
+- **Day 11** — Transformer session 6: causal masking built and proven; deep dives on Q/K/V separation, the feed-forward's purpose, cross-attention, and why decoder-only architectures won
+- **Day 10** — _(fill in from `logs/day_10.md`)_
+- **Day 09** — Transformer session 5: stacked encoder blocks into a full encoder with independent per-block weights
+- **Day 08** — Transformer sessions 3 & 4: positional encoding (sin/cos "clock dials"), full encoder block with residuals and layer norm
+- **Day 07** — CS50P libraries; Transformer session 2: multi-head attention
+- **Day 06** — Heaps (concept level); Transformer session 1: scaled dot-product attention
 - **Day 05** — CS50P exceptions, dict/tuple/set practice, finished *AI Engineering* (Chip Huyen), hard LeetCode explored at intuition level
 - **Day 04** — Kleppmann Ch.2 continued, three-way partition LeetCode
 - **Day 03** — AWS Glue ETL, Kleppmann Ch.2, transformer paper — vectors and embeddings
 - **Day 02** — GPT-2 internals, transformer components
 - **Day 01** — CS50P, first LeetCode problems
+
+---
+
+## Up Next
+
+- **Paper 2 of 7:** GPT-3 — *Language Models are Few-Shot Learners* (Brown et al., 2020). What happens when the architecture above is scaled ~1000×.
+- Revisit the training loop with real backpropagation instead of numerical gradients.
 
 ---
 
