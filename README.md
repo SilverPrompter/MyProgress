@@ -157,10 +157,11 @@
 
 *Newest first — full session details in the [/logs](logs) folder.*
 
+- **Day 14** — re-entry after 29 days: rebuilt the Transformer from memory (~half recalled cold), fixed five mix-ups (backprop vs. forward pass, softmax vs. feed-forward, order-blindness, where values blend, where positional encoding lives), new "transformer as a building" map. Sessions now run as a structured program: spaced review, paper roadmap, math track, LeetCode ladder, systems drills
 - **Day 13** — index-expression drill (5/6, the recurring bug is closing out), Destroying Asteroids via greedy-with-sorting, **completed *Attention Is All You Need* from scratch** — decoder with masked + cross-attention, cross-entropy loss, and a training run that actually learns (7/7 sessions)
 - **Day 12** — deep learning foundations: McCulloch–Pitts neuron (1943), Rosenblatt's perceptron (1958), activation functions, full CNN pipeline; spaced-retrieval re-attempt of Check if Array Is Sorted and Rotated (pattern not retained — logged honestly)
 - **Day 11** — Transformer session 6: causal masking built and proven; deep dives on Q/K/V separation, the feed-forward's purpose, cross-attention, and why decoder-only architectures won
-- **Day 10** — _(fill in from `logs/day_10.md`)_
+- **Day 10** — Path Existence Queries in a Graph: sorted values split into islands, answered by connected-component labels
 - **Day 09** — Transformer session 5: stacked encoder blocks into a full encoder with independent per-block weights
 - **Day 08** — Transformer sessions 3 & 4: positional encoding (sin/cos "clock dials"), full encoder block with residuals and layer norm
 - **Day 07** — CS50P libraries; Transformer session 2: multi-head attention
@@ -175,8 +176,8 @@
 
 ## Up Next
 
-- **Paper 2 of 7:** GPT-3 — *Language Models are Few-Shot Learners* (Brown et al., 2020). What happens when the architecture above is scaled ~1000×.
-- Revisit the training loop with real backpropagation instead of numerical gradients.
+- **Stage 1: Learning machinery.** *Learning representations by back-propagating errors* (Rumelhart, Hinton & Williams, 1986): build a scalar autograd engine, then replace the numerical gradients in the training loop with real backpropagation.
+- Then Adam (Kingma & Ba, 2014) and ResNet (He et al., 2015), each built and ablated.
 
 ---
 
