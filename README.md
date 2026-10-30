@@ -157,6 +157,7 @@
 
 *Newest first — full session details in the [/logs](logs) folder.*
 
+- **Day 16** — review day that found the real bottleneck: math foundations (matrix multiplication, exponents, fractions), not ML concepts. Learned matrix multiplication properly, which resolved the attention vs. feed-forward swap; why nonlinearity is needed (straight lines can't turn around)
 - **Day 15** — first immersion day: deep dives on ReLU (hinges, folding, why depth needs nonlinearity), embeddings and the dot product, softmax stability, multi-head attention (why heads exist, who decides their jobs, the Bitter Lesson); previewed *Attention Residuals* (2026). Program now includes daily Rust, math-first paper primers, and spaced-repetition learning steps
 - **Day 14** — re-entry after 29 days: rebuilt the Transformer from memory (~half recalled cold), fixed five mix-ups (backprop vs. forward pass, softmax vs. feed-forward, order-blindness, where values blend, where positional encoding lives), new "transformer as a building" map. Sessions now run as a structured program: spaced review, paper roadmap, math track, LeetCode ladder, systems drills
 - **Day 13** — index-expression drill (5/6, the recurring bug is closing out), Destroying Asteroids via greedy-with-sorting, **completed *Attention Is All You Need* from scratch** — decoder with masked + cross-attention, cross-entropy loss, and a training run that actually learns (7/7 sessions)
