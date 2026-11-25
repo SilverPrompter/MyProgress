@@ -41,11 +41,11 @@ Installed Rust, ran Hello World, made a Cargo project. `!` = macro; `cargo check
 
 Precalculus Unit 7 (Matrices) completed, but weak. The Unit 6 (Vectors) test couldn't be started.
 
-## Decision (Nov 24): math foundations phase
+## Decision (Nov 25): backprop-driven, math on the fly
 
-The ML ideas keep tripping over missing math, so for the next several weeks it's **math first** (vectors → matrices → logarithms → derivatives and the chain rule), with Rust daily and papers paused. Each topic: taught in chat first, then Khan practice, then a quiz, then a Khan unit test (≥ 80%).
+The ML ideas keep tripping over missing math. Instead of a separate math-first phase, the next stretch is driven by one goal, **building backprop**, and each math topic is learned exactly when that build needs it: vectors (a neuron is a dot product) → matrices (a layer is a matrix multiply) → logarithms (the loss) → derivatives → the chain rule (backprop itself). When something doesn't land, go back and review it, then continue. Checkpoint in 2 weeks: if math detours still dominate, switch to math-first.
 
 ## Repo updates
 
 - [ ] Add this log as `days/day_17.md`
-- [ ] README Recent Activity: **Day 17**: cross-attention, convergence, numerical gradients vs. backprop, logarithms, dot vs. element-wise vs. outer products; first Rust program. Decision: switch to a math foundations phase before continuing ML
+- [ ] README Recent Activity: **Day 17**: cross-attention, convergence, numerical gradients vs. backprop, logarithms, dot vs. element-wise vs. outer products; first Rust program. Decision: next stretch is backprop-driven, learning the math on the fly
