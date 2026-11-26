@@ -12,7 +12,11 @@ output = ReLU(w · x + b)
 2. **Add the bias:** sets how easily the neuron fires
 3. **ReLU:** positive passes through, negative becomes 0 (off)
 
-Pure Python, no libraries. Written from a blank file.
+Two versions, both written from a blank file:
+- `neuron()`: pure Python, a loop for the dot product
+- `neuron_np()`: NumPy, where `x @ w` does the whole dot product
+
+The two are checked against each other on the same inputs (a slow, obvious version verifying a fast one).
 
 ## Run
 
@@ -31,6 +35,7 @@ Every test was worked by hand first, then checked against the code:
 | `neuron([1, 4], [2, -0.5], 0.5)` | 0 + 0.5 = 0.5 → on | 0.5 ✅ |
 | `neuron([3, 1], [-1, 2], -0.5)` | −1 − 0.5 = −1.5 → off | 0 ✅ |
 | `dot([3, 2, 1], [3, 3])` | lengths differ | `ValueError: Lengths are not equal 3 vs 2` ✅ |
+| `neuron_np(...)` on the three neuron cases | same as the loop version | 0, 0.5, 0 ✅ (agrees) |
 
 ## What I learned building it
 
@@ -40,8 +45,8 @@ Every test was worked by hand first, then checked against the code:
 - Multiplication already handles negative signs, so no `if` is needed; just add each product to the total.
 - A function that doesn't `return` gives back `None`.
 - Check inputs up front: mismatched lengths raise a clear `ValueError` before the loop starts, instead of crashing halfway through with an `IndexError`.
+- NumPy: `a * b` multiplies the pairs and stops; `a @ b` multiplies and adds (the dot product). `@` only works on NumPy **arrays**, not plain lists (`TypeError: unsupported operand type(s) for @: 'list' and 'list'`), so convert first with `x = np.array(x)`.
 
 ## Next
 
-- NumPy version, checked against this one
 - Step 2: a layer is a matrix multiply

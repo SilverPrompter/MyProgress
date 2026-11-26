@@ -16,9 +16,20 @@ def neuron(x,w,b):
     dp =dot(x,w) + b
     return relu(dp)
 
+import numpy as np
+
+def neuron_np (x,w,b):
+    x = np.array(x)
+    w = np.array(w)
+    dp = x @ w + b
+    return relu(dp)
+
 
 print(dot([3,2],[4,5]))
 print(neuron([2, 3], [0.5, -1], 1))
 print(neuron([1, 4], [2, -0.5], 0.5))
 print(neuron([3, 1], [-1, 2], -0.5))
-print(dot([3,2,1],[3,3]))
+print(neuron_np([1, 4], [2, -0.5], 0.5))
+print(neuron_np([2, 3], [0.5, -1], 1))      # should be 0
+print(neuron_np([1, 4], [2, -0.5], 0.5))    # should be 0.5
+print(neuron_np([3, 1], [-1, 2], -0.5))
