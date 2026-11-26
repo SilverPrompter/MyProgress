@@ -157,6 +157,7 @@
 
 *Newest first — full session details in the [/logs](logs) folder.*
 
+- **Day 19** — step 1 of the backprop path: a neuron is a dot product. First portfolio build, [`builds/01-neuron`](builds/01-neuron): loop and NumPy versions, cross-checked, with input validation. Rust ch. 3.1–3.2
 - **Day 18** — back after 26 days; new plan: build backprop from scratch, learning each piece of math (vectors → matrices → logs → derivatives → chain rule) when the build needs it. Fixed the dot product for good; Rust ch. 2 guessing game (`mut`, `Result`/`match`)
 - **Day 17** — cross-attention, convergence, numerical gradients vs. backprop, logarithms, dot vs. element-wise vs. outer products; first Rust program. Decision: next stretch is backprop-driven, learning the math (vectors → matrices → logs → derivatives → chain rule) on the fly
 - **Day 16** — review day that found the real bottleneck: math foundations (matrix multiplication, exponents, fractions), not ML concepts. Learned matrix multiplication properly, which resolved the attention vs. feed-forward swap; why nonlinearity is needed (straight lines can't turn around)
